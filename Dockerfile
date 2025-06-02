@@ -1,0 +1,21 @@
+# Usa una imagen base oficial de Node.js
+FROM node:20-alpine
+
+# Establece el directorio de trabajo
+WORKDIR /usr/src/app
+
+# Copia los archivos de dependencias
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+
+# Instala pnpm y las dependencias
+RUN npm install -g pnpm && pnpm install --frozen-lockfile
+
+# Copia el resto de la aplicación
+COPY . .
+
+# Expone el puerto de la app
+EXPOSE 3000
+
+# Comando para iniciar la app
+CMD ["pnpm", "start"]
