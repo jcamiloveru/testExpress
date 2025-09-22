@@ -2,7 +2,7 @@
 FROM node:22-alpine
 
 # Establece el directorio de trabajo
-WORKDIR /usr/src/app
+WORKDIR /user/src/app
 
 # Copia los archivos de dependencias
 COPY package.json ./
@@ -15,7 +15,7 @@ RUN npm install -g pnpm && pnpm install --frozen-lockfile
 COPY . .
 
 # Expone el puerto de la app
-EXPOSE 3000
+EXPOSE $PORT
 
 # Comando para iniciar la app
 CMD ["pnpm", "start"]
